@@ -3,5 +3,8 @@
     "description": "WordPress Composer Starter repository for quick-starting WordPress projects",
     "require": {
         "johnpbloch/wordpress": "~4"
+    },
+    "extra": {
+        "wordpress-install-dir": "public/wordpress"
     }
 }
