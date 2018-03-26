@@ -3,3 +3,5 @@ wordpress/
 public/wp-content/plugins/
 public/wp-content/themes/
 .vagrant/
+.env
+*.log
