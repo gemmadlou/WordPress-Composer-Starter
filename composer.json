@@ -1,10 +1,20 @@
 {
     "name": "gemmablack/wordpress_composer_starter",
     "description": "WordPress Composer Starter repository for quick-starting WordPress projects",
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
     "require": {
-        "johnpbloch/wordpress": "~4"
+        "johnpbloch/wordpress": "~4",
+        "wpackagist-plugin/wordpress-seo": "7.*"
     },
     "extra": {
-        "wordpress-install-dir": "public/wordpress"
+        "wordpress-install-dir": "public/wordpress",
+        "installer-paths": {
+            "public/wp-content/plugins/{$name}": ["type:wordpress-plugin"]
+        }
     }
 }
