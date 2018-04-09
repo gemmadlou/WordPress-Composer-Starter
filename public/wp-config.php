@@ -61,6 +61,11 @@ define('WP_CONTENT_DIR', dirname(__FILE__) . '/wp-content');
 define('WP_PLUGIN_DIR', dirname(__FILE__) . '/wp-content/plugins');
 
 /**
+ * WordPress content directory url
+ */
+define( 'WP_CONTENT_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/wp-content' );
+
+/**
  * Controls the error reporting. When true, it sets the error reporting level
  * to E_ALL. 
  */
