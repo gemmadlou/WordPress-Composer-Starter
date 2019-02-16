@@ -242,3 +242,21 @@ Create a Docker file
 FROM php:7.2.15-fpm-alpine3.9
 RUN docker-php-ext-install mysqli
 ```
+
+Update the docker-compose to use the dockerfile instead of a plain image. Replace the php `image` block with this:
+
+```yml
+build:
+  dockerfile: ./cicd/php.dockerfile
+  context: ./
+```
+
+Run:
+
+```sh
+docker-compose down && docker-compose up -d
+```
+
+### Voila!
+
+Hopefully I didn't miss out anything.
