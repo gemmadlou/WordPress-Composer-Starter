@@ -10,7 +10,8 @@
         "url": "https://wpackagist.org"
     }],
     "require": {
-        "johnpbloch/wordpress": ">=4.9"
+        "johnpbloch/wordpress": ">=4.9",
+        "vlucas/phpdotenv": "3.*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

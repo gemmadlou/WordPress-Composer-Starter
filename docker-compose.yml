@@ -13,9 +13,15 @@ services:
       MYSQL_PASSWORD: wordpress
 
   php:
-    image: php:7-fpm
+    depends_on:
+      - db
+    build:
+      dockerfile: ./cicd/php.dockerfile
+      context: ./
     volumes:
       - ./web:/var/www
+      - ./vendor:/var/www/vendor
+      - ./.env:/var/www/.env
 
   web:
     depends_on:

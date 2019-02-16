@@ -55,9 +55,12 @@ services:
       MYSQL_PASSWORD: wordpress
 
   php:
-    image: php:7-fpm
+    depends_on:
+      - db
+    image: php:7.1.26-fpm-alpine3.8
     volumes:
       - ./web:/var/www
+      - ./vendor:/var/www/vendor
 
   web:
     depends_on:
@@ -191,6 +194,19 @@ server {
     access_log /var/log/nginx/access.log;
     root /var/www/wp;
 
+    location / {
+        # This is cool because no php is touched for static content.
+        # include the "$is_args$args" so non-default permalinks doesn't break when using query string
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    error_page 404 /404.html;
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
     location ~ \.php$ {
         try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
@@ -199,12 +215,6 @@ server {
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PATH_INFO $fastcgi_path_info;
-    }
-
-    location / {
-        # This is cool because no php is touched for static content.
-        # include the "$is_args$args" so non-default permalinks doesn't break when using query string
-        try_files $uri $uri/ /index.php$is_args$args;
     }
 }
 ```
@@ -221,3 +231,14 @@ docker-compose up -d
 Now go back to `http://localhost:8080` and you'll see
 
 ![](./images/wp-page.png)
+
+#### Hmmm...PHP will need a way to connect to mysql
+
+Create a Docker file
+
+> cicd/php.dockerfile
+
+```dockerfile
+FROM php:7.2.15-fpm-alpine3.9
+RUN docker-php-ext-install mysqli
+```
