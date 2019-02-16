@@ -1,7 +1,3 @@
-vendor/
-wordpress/
-public/wp-content/plugins/
-public/wp-content/themes/
-.vagrant/
+**/vendor/**
+**/web/wp/**
 .env
-*.log
