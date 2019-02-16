@@ -1,0 +1,20 @@
+{
+    "name": "pixelex/wp",
+    "type": "project",
+    "authors": [{
+        "name": "Gemma Black",
+        "email": "gblackuk@googlemail.com"
+    }],
+    "repositories": [{
+        "type": "composer",
+        "url": "https://wpackagist.org"
+    }],
+    "require": {
+        "johnpbloch/wordpress": ">=4.9"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "wordpress-install-dir": "web/wp"
+    }
+}
